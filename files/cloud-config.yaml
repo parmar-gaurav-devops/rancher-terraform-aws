@@ -1,0 +1,15 @@
+#cloud-config
+runcmd:
+- apt-get update
+- apt-get install -y apt-transport-https jq software-properties-common
+- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+- add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+- apt-get update
+- apt-get -y install docker-ce=5:19.03.8~3-0~ubuntu-bionic
+- usermod -G docker -a ubuntu
+- echo '{"log-driver":"json-file","log-opts":{"max-size":"10m","max-file":"6"}}' | jq . > /etc/docker/daemon.json
+- systemctl restart docker && systemctl enable docker
+- docker pull rancher/rancher
+- mkdir /opt/rancher/
+- mkdir /var/log/rancher/auditlog/
+- docker run -d --restart=unless-stopped -p 80:80 -p 443:443 -v /var/log/rancher/auditlog:/var/log/auditlog -v /opt/rancher:/var/lib/rancher rancher/rancher:latest
