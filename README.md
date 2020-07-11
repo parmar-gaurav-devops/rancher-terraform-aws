@@ -1,5 +1,12 @@
 # rancher-terraform-aws
 
+Terraform scripts to create a rancher server in Public Subnet.
+
+Requirements:
+  - Terraform >= 0.12
+  - AWS Access keys
+  - AWS Secret Keys
+
 
 ![Rancher Server Hosting in AWS](/images/rancher-server-single-node-ha-for-aws.jpg)
-Format: ![Rancher Server](https://github.com/parmar-gaurav-devops/rancher-terraform-aws/blob/master/images/rancher-server-single-node-ha-for-aws.jpg)
+
