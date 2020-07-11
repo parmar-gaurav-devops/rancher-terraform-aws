@@ -1,4 +1,4 @@
-# rancher-terraform-aws
+# Rancher Server using terraform in aws
 
 Terraform scripts to create a rancher server in Public Subnet.
 
